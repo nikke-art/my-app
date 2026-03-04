@@ -432,6 +432,9 @@ body {
   transition:transform 0.15s;
 }
 .fab:active { transform:scale(0.9); }
+#ver-badge{position:fixed;bottom:10px;right:12px;font-size:10px;color:var(--text2,#aaa);opacity:0.45;pointer-events:none;z-index:9999;font-family:sans-serif;}
+#ptr-wrap{position:fixed;top:0;left:0;right:0;height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff9f6;z-index:10000;transition:height 0.15s;font-size:13px;color:#c09090;}
+#ptr-wrap.ready{color:#e07070;}
 </style>
 </head>
 <body>
@@ -995,6 +998,14 @@ function renderAll(){ renderHeader(); renderWishList(); if(subTab==='cal')render
 
 renderAll();
 renderKininar();
+
+const APP_VER='1.0.0';
+const _vb=document.createElement('div');_vb.id='ver-badge';_vb.textContent='v'+APP_VER;document.body.appendChild(_vb);
+const _ptr=document.createElement('div');_ptr.id='ptr-wrap';_ptr.textContent='↓ 引っ張って更新';document.body.appendChild(_ptr);
+let _ps=0,_pd=0,_pa=false;const _PT=70;
+document.addEventListener('touchstart',e=>{if(window.scrollY===0){_ps=e.touches[0].clientY;_pa=true;}},{passive:true});
+document.addEventListener('touchmove',e=>{if(!_pa)return;_pd=Math.max(0,e.touches[0].clientY-_ps);if(_pd>0&&window.scrollY===0){const h=Math.min(_pd*0.45,_PT);_ptr.style.height=h+'px';_ptr.textContent=h>=_PT?'🔄 離して更新':'↓ 引っ張って更新';_ptr.classList.toggle('ready',h>=_PT);}},{passive:true});
+document.addEventListener('touchend',()=>{if(!_pa)return;_pa=false;if(_pd*0.45>=_PT){_ptr.style.height='44px';_ptr.textContent='更新中...';setTimeout(()=>location.reload(),400);}else{_ptr.style.height='0';}_pd=0;});
 </script>
 </body>
 </html>
