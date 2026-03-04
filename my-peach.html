@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="My Peach">
+  <meta name="theme-color" content="#F2856A">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRjI4NTZBIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0Y1QTI3QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0idXJsKCNnKSIvPgogIDx0ZXh0IHg9IjkwIiB5PSIxMTgiIGZvbnQtc2l6ZT0iOTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfjZE8L3RleHQ+Cjwvc3ZnPg==">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🍑 My Peach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --peach:    #F2856A;
+  --peach2:   #E8644A;
+  --orange:   #F5A27A;
+  --cream:    #FEF8F3;
+  --cream2:   #FDF0E8;
+  --white:    #FFFFFF;
+  --brown:    #3D2010;
+  --brown2:   #7A4528;
+  --muted:    #C4A090;
+  --border:   #F0DDD4;
+  --grad:     linear-gradient(135deg, #F2856A, #F5A27A);
+  --grad2:    linear-gradient(135deg, #F5A27A, #F2D0B0);
+  --shadow:   0 2px 16px rgba(61,32,16,0.08);
+  --shadow-lg:0 8px 32px rgba(61,32,16,0.14);
+  --r: 18px;
+
+  /* status colors */
+  --s-kento:    #C9A84C;
+  --s-mikan:    #A598C9;
+  --s-yoyaku:   #F2856A;
+  --s-kanryo:   #7BAF8B;
+  --s-uketori:  #8BAFC9;
+  --s-itsuka:   #B0B0B0;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+
+body {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  min-height: 100vh;
+  padding-bottom: 110px;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--grad);
+  padding: 52px 22px 20px;
+  position: relative; overflow: hidden;
+}
+.header-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+}
+.header-blob1 { width:160px;height:160px; top:-50px;right:-30px; }
+.header-blob2 { width:80px;height:80px; bottom:-20px;left:80px; }
+.header-blob3 { width:50px;height:50px; top:30px;left:30px; background:rgba(255,255,255,0.08); }
+
+.header-eyebrow {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); margin-bottom: 4px; position:relative;
+}
+.header-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 32px; color: white; line-height: 1;
+  margin-bottom: 4px; position:relative;
+}
+.header-peach { font-size: 24px; vertical-align: middle; }
+.header-sub { font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 16px; position:relative; }
+
+.header-stats { display:flex; gap:8px; flex-wrap:wrap; position:relative; }
+.stat-pill {
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 100px; padding: 5px 12px;
+  font-size: 11px; color: white; font-weight: 700;
+}
+.stat-pill span { opacity: 0.8; font-weight: 400; }
+
+/* ── URGENT BANNER ── */
+.urgent-banner {
+  background: linear-gradient(90deg, #F2856A22, #F5A27A22);
+  border-left: 3px solid var(--peach);
+  margin: 14px 18px 0;
+  border-radius: 0 12px 12px 0;
+  padding: 10px 14px;
+  font-size: 12px; color: var(--peach2); font-weight: 700;
+  display: none;
+}
+.urgent-banner.show { display: block; }
+
+/* ── MAIN TABS ── */
+.main-tabs {
+  display: flex; gap: 0;
+  padding: 14px 18px 0;
+  border-bottom: 2px solid var(--border);
+  background: var(--cream);
+  position: sticky; top: 0; z-index: 50;
+}
+.main-tab {
+  flex: 1; padding: 10px 8px 12px;
+  text-align: center; font-size: 13px; font-weight: 700;
+  color: var(--muted); cursor: pointer; border: none; background: none;
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all 0.2s; font-family: 'Zen Maru Gothic', sans-serif;
+}
+.main-tab.active { color: var(--peach2); border-bottom-color: var(--peach2); }
+
+/* ── VIEWS ── */
+.view { display:none; padding:16px 18px; }
+.view.active { display:block; }
+
+/* ── SUB TABS (wishlist inner) ── */
+.sub-tabs {
+  display: flex; gap: 6px; margin-bottom: 14px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.sub-tabs::-webkit-scrollbar { display:none; }
+.sub-tab {
+  flex-shrink: 0; padding: 6px 14px; border-radius: 100px;
+  border: 1.5px solid var(--border); background: var(--white);
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  color: var(--muted); transition: all 0.2s;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+.sub-tab.active { background: var(--peach); border-color: var(--peach); color: white; }
+
+/* ── FILTER ROW ── */
+.filter-row {
+  display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;
+  margin-bottom: 14px; padding-bottom: 2px;
+}
+.filter-row::-webkit-scrollbar { display:none; }
+.filter-btn {
+  flex-shrink:0; padding:5px 12px; border-radius:100px;
+  border:1.5px solid var(--border); background:var(--white);
+  font-size:11px; font-weight:700; cursor:pointer;
+  color:var(--muted); transition:all 0.2s;
+  font-family:'Zen Maru Gothic',sans-serif;
+}
+.filter-btn.active { background:var(--brown); border-color:var(--brown); color:white; }
+
+/* ── WISH CARD ── */
+.items-list { display:flex; flex-direction:column; gap:10px; }
+
+.wish-card {
+  background: var(--white); border-radius: var(--r);
+  border: 1px solid var(--border); padding: 14px 16px;
+  box-shadow: var(--shadow); cursor: pointer;
+  transition: transform 0.12s; animation: fadeUp 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.wish-card:active { transform: scale(0.985); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+
+.wish-card-stripe {
+  position:absolute; left:0;top:0;bottom:0;width:4px;
+  border-radius:4px 0 0 4px;
+}
+.wish-inner { margin-left: 12px; }
+
+.wish-top { display:flex; align-items:flex-start; gap:8px; margin-bottom:8px; }
+.wish-name { font-size:14px; font-weight:700; flex:1; line-height:1.4; color:var(--brown); }
+
+.status-badge {
+  flex-shrink:0; padding:3px 9px; border-radius:100px;
+  font-size:10px; font-weight:700;
+}
+.sb-検討中   { background:#FFF8E6; color:#B8860B; }
+.sb-未予約   { background:#F5F5F5; color:#999; }
+.sb-予約中   { background:#FFF0EB; color:var(--peach2); }
+.sb-予約完了 { background:#EAF7EE; color:#2E7D32; }
+.sb-受け取り済{ background:#E8F4FD; color:#1565C0; }
+.sb-いつか買う{ background:#F5F5F5; color:#AAA; }
+
+.wish-mid {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 5px;
+}
+.wish-price { font-size:18px; font-weight:900; color:var(--peach2); line-height:1; }
+.wish-price-sub { font-size:10px; color:var(--muted); font-weight:400; margin-left:2px; }
+.wish-shop { font-size:11px; color:var(--muted); }
+
+.wish-date { font-size:10px; color:var(--muted); margin-top:3px; line-height:1.6; }
+.wish-date.urgent { color:var(--peach2); font-weight:700; }
+
+.wish-tags { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+.wish-tag {
+  font-size:10px; padding:2px 8px; border-radius:100px;
+  background:var(--cream2); color:var(--brown2); font-weight:500;
+}
+.wish-memo { font-size:11px; color:var(--muted); margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* ── CALENDAR POPUP ── */
+.cal-popup {
+  display:none; position:fixed; inset:0; z-index:300;
+  align-items:center; justify-content:center;
+  background:rgba(61,32,16,0.35);
+}
+.cal-popup.open { display:flex; animation:fadeIn 0.15s; }
+.cal-popup-box {
+  background:var(--white); border-radius:20px; padding:20px;
+  max-width:300px; width:90%; box-shadow:var(--shadow-lg);
+  animation:slideUp 0.2s ease;
+}
+.cal-popup-title { font-size:15px; font-weight:700; margin-bottom:12px; color:var(--brown); }
+.cal-popup-item {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 0; border-bottom:1px solid var(--border); cursor:pointer;
+}
+.cal-popup-item:last-child { border-bottom:none; }
+.cal-popup-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+.cal-popup-name { font-size:13px;font-weight:700;flex:1; }
+.cal-popup-date { font-size:10px;color:var(--muted); }
+.cal-popup-close {
+  width:100%; margin-top:14px; padding:10px; border:none;
+  background:var(--cream2); border-radius:12px; font-size:13px;
+  font-weight:700; color:var(--muted); cursor:pointer;
+  font-family:'Zen Maru Gothic',sans-serif;
+}
+
+/* ── CALENDAR MONTH LIST ── */
+.cal-month-list { margin-top:14px; }
+.cal-month-list-title {
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);font-weight:700;margin-bottom:10px;
+}
+.cal-month-item {
+  background:var(--white); border-radius:14px; border:1px solid var(--border);
+  padding:11px 14px; margin-bottom:8px; box-shadow:var(--shadow);
+  cursor:pointer; display:flex; align-items:center; gap:10px;
+  transition:transform 0.1s;
+}
+.cal-month-item:active { transform:scale(0.98); }
+.cal-month-item-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+.cal-month-item-body { flex:1; min-width:0; }
+.cal-month-item-name { font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.cal-month-item-date { font-size:10px;color:var(--muted);margin-top:2px; }
+.cal-month-item-badge { flex-shrink:0; }
+
+/* totals hero font handled above */
+.cal-nav-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.cal-label { font-family:'Zen Maru Gothic',sans-serif; font-size:20px; color:var(--brown); }
+.cal-btn {
+  background:var(--white); border:1px solid var(--border); border-radius:10px;
+  padding:7px 13px; font-size:13px; cursor:pointer; color:var(--muted);
+  box-shadow:var(--shadow);
+}
+.cal-grid {
+  background:var(--white); border-radius:var(--r);
+  border:1px solid var(--border); overflow:hidden; box-shadow:var(--shadow);
+  margin-bottom: 14px;
+}
+.cal-head { display:grid; grid-template-columns:repeat(7,1fr); background:var(--grad); }
+.cal-head-day { text-align:center; padding:8px 2px; font-size:10px; font-weight:700; color:rgba(255,255,255,0.9); }
+.cal-head-day:first-child { color:rgba(255,255,255,0.6); }
+.cal-head-day:last-child  { color:rgba(255,255,255,0.6); }
+.cal-days { display:grid; grid-template-columns:repeat(7,1fr); }
+.cal-cell {
+  min-height:56px; border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border); padding:4px 3px 3px;
+}
+.cal-cell:nth-child(7n) { border-right:none; }
+.cal-num {
+  font-size:11px; font-weight:500; color:var(--muted);
+  width:20px; height:20px; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; margin:0 auto 2px;
+}
+.cal-num.today { background:var(--peach); color:white; font-weight:900; }
+.cal-num.sun { color:#F2856A; }
+.cal-num.sat { color:#A598C9; }
+.cal-cell.other .cal-num { color:#E0D8D4; }
+.cal-bars { display:flex; flex-direction:column; gap:1.5px; }
+.cal-bar { height:5px; border-radius:100px; opacity:0.8; }
+.cal-bar.s { border-radius:100px 0 0 100px; }
+.cal-bar.e { border-radius:0 100px 100px 0; }
+.cal-bar.m { border-radius:0; opacity:0.6; }
+.cal-bar.o { border-radius:100px; }
+.cal-legend { padding:12px 16px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:6px; }
+.cal-legend-row { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--muted); }
+.cal-legend-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+
+/* ── TOTALS ── */
+.totals-hero {
+  background: var(--grad); border-radius:var(--r);
+  padding:22px 20px; margin-bottom:14px; box-shadow:var(--shadow-lg);
+  position:relative; overflow:hidden;
+}
+.totals-hero::after {
+  content:'🍑'; position:absolute; right:16px; bottom:12px;
+  font-size:56px; opacity:0.15;
+}
+.totals-hero-label { font-size:10px; letter-spacing:2px; color:rgba(255,255,255,0.75); margin-bottom:6px; text-transform:uppercase; }
+.totals-hero-val { font-family:'Zen Maru Gothic',sans-serif; font-size:38px; font-weight:900; color:white; margin-bottom:16px; line-height:1; }
+.totals-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.totals-mini { background:rgba(255,255,255,0.18); border-radius:12px; padding:10px 12px; }
+.totals-mini-label { font-size:10px; color:rgba(255,255,255,0.65); margin-bottom:3px; }
+.totals-mini-val { font-size:15px; font-weight:900; color:white; }
+
+.totals-section {
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:16px; margin-bottom:14px; box-shadow:var(--shadow);
+}
+.totals-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:12px; }
+.totals-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+.totals-row:last-child { border-bottom:none; }
+.totals-row-l { display:flex; align-items:center; gap:7px; }
+.totals-row-dot { width:8px;height:8px;border-radius:50%; }
+.totals-row-val { font-weight:700; color:var(--brown); }
+
+.kento-cards { display:flex; flex-direction:column; gap:8px; }
+.kento-card {
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:13px 15px; box-shadow:var(--shadow); position:relative; overflow:hidden; cursor:pointer;
+}
+.kento-stripe { position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad); }
+.kento-name { font-size:13px;font-weight:700;margin-left:12px;margin-bottom:5px; }
+.kento-prices { display:flex;gap:10px;flex-wrap:wrap;margin-left:12px;font-size:11px;color:var(--muted); }
+.kento-total { font-weight:900;color:var(--peach2); }
+
+/* ── 気になる CARDS ── */
+.kininar-card {
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:14px 16px; box-shadow:var(--shadow); cursor:pointer;
+  transition:transform 0.12s; animation:fadeUp 0.25s ease;
+  position:relative;
+}
+.kininar-card:active { transform:scale(0.985); }
+.kininar-top { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.kininar-name { font-size:14px;font-weight:700;flex:1;line-height:1.4; }
+.kininar-url { font-size:11px; color:var(--peach2); margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-decoration:none; display:block; }
+.kininar-memo { font-size:11px; color:var(--muted); }
+.kininar-promote {
+  margin-top:8px; padding:7px 12px; border-radius:100px;
+  background:var(--cream2); border:1px solid var(--border);
+  font-size:11px; font-weight:700; color:var(--peach2); cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif;
+}
+
+/* ── EMPTY ── */
+.empty { text-align:center; padding:60px 20px; color:var(--muted); }
+.empty-emoji { font-size:44px; margin-bottom:12px; }
+.empty p { font-size:12px; line-height:1.8; }
+
+/* ── MODAL ── */
+.overlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(61,32,16,0.4); z-index:200;
+  align-items:flex-end; justify-content:center;
+}
+.overlay.open { display:flex; animation:fadeIn 0.2s; }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+.modal {
+  width:100%; max-width:480px; background:var(--cream);
+  border-radius:24px 24px 0 0; padding:20px 20px 48px;
+  max-height:92vh; overflow-y:auto; animation:slideUp 0.3s ease;
+}
+@keyframes slideUp { from{transform:translateY(100%);}to{transform:translateY(0);} }
+.modal-handle { width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px; }
+.modal-title { font-family:'Zen Maru Gothic',sans-serif; font-size:22px; font-weight:900; color:var(--brown); margin-bottom:18px; text-align:center; }
+
+.fsec { margin-bottom:16px; }
+.fsec-label { font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;display:block; }
+.fl { font-size:11px;color:var(--muted);margin-bottom:4px;display:block;font-weight:500; }
+.fi, .fsel, .fta {
+  width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:12px;
+  background:var(--white); font-family:'Zen Maru Gothic',sans-serif; font-size:13px;
+  color:var(--brown); outline:none; transition:border-color 0.2s; -webkit-appearance:none;
+}
+.fi:focus,.fsel:focus,.fta:focus { border-color:var(--peach); }
+.fta { height:68px; resize:none; }
+.frow { display:flex; gap:10px; }
+.frow .fg { flex:1; min-width:0; }
+.fg { margin-bottom:10px; }
+
+.kento-toggle {
+  display:flex; align-items:center; gap:10px; background:var(--white);
+  border:1.5px solid var(--border); border-radius:12px; padding:11px 14px;
+  cursor:pointer; transition:border-color 0.2s;
+}
+.kento-toggle.on { border-color:var(--peach); background:#FFF5F0; }
+.toggle-box {
+  width:20px;height:20px;border-radius:6px;border:2px solid var(--border);
+  background:white;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all 0.2s;font-size:12px;color:transparent;
+}
+.kento-toggle.on .toggle-box { background:var(--peach);border-color:var(--peach);color:white; }
+.toggle-label { font-size:13px;font-weight:700;color:var(--brown); }
+.toggle-sub { font-size:10px;color:var(--muted); }
+
+.price-preview {
+  background:var(--grad2); border-radius:14px; padding:14px 16px;
+  margin-bottom:14px; text-align:center;
+}
+.price-preview-label { font-size:10px;color:rgba(61,32,16,0.5);letter-spacing:1px;margin-bottom:3px; }
+.price-preview-val { font-family:'Zen Maru Gothic',sans-serif; font-size:28px; color:var(--peach2); }
+
+.btn-save {
+  width:100%; padding:15px; border:none; border-radius:14px;
+  background:var(--grad); color:white;
+  font-family:'Zen Maru Gothic',sans-serif; font-size:14px; font-weight:700;
+  cursor:pointer; box-shadow:0 6px 20px rgba(242,133,106,0.4);
+  margin-top:4px; letter-spacing:0.5px;
+}
+.btn-del {
+  width:100%; padding:12px; border:1.5px solid #FFCDD2; border-radius:12px;
+  background:none; color:#E57373; font-family:'Noto Sans JP',sans-serif;
+  font-size:13px; cursor:pointer; margin-top:8px;
+}
+.btn-cancel {
+  width:100%; padding:12px; border:none; background:none;
+  color:var(--muted); font-family:'Noto Sans JP',sans-serif;
+  font-size:12px; cursor:pointer; margin-top:4px;
+}
+
+/* ── FAB ── */
+.fab {
+  position:fixed; bottom:28px; right:20px;
+  width:56px; height:56px; border-radius:50%;
+  background:var(--grad); border:none; color:white; font-size:24px;
+  cursor:pointer; z-index:100;
+  box-shadow:0 8px 28px rgba(242,133,106,0.5);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform 0.15s;
+}
+.fab:active { transform:scale(0.9); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-blob header-blob1"></div>
+  <div class="header-blob header-blob2"></div>
+  <div class="header-blob header-blob3"></div>
+  <div class="header-eyebrow">My Wishlist</div>
+  <div class="header-title">My Peach 🍑</div>
+  <div class="header-sub">ほしいものを、ここに。</div>
+  <div class="header-stats" id="headerStats"></div>
+</div>
+
+<!-- URGENT BANNER -->
+<div class="urgent-banner" id="urgentBanner"></div>
+
+<!-- MAIN TABS -->
+<div class="main-tabs">
+  <button class="main-tab active" onclick="switchMain('wish')">🍑 ほしいもの</button>
+  <button class="main-tab" onclick="switchMain('kininar')">👀 気になる</button>
+</div>
+
+<!-- ===== WISHLIST VIEW ===== -->
+<div id="view-wish" class="view active">
+
+  <!-- sub tabs -->
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="switchSub('list',this)">リスト</button>
+    <button class="sub-tab" onclick="switchSub('cal',this)">カレンダー</button>
+    <button class="sub-tab" onclick="switchSub('totals',this)">検討中の総額</button>
+  </div>
+
+  <!-- LIST -->
+  <div id="sub-list">
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="setWFilter('all',this)">すべて</button>
+      <button class="filter-btn" onclick="setWFilter('検討中',this)">検討中</button>
+      <button class="filter-btn" onclick="setWFilter('未予約',this)">未予約</button>
+      <button class="filter-btn" onclick="setWFilter('予約中',this)">予約中</button>
+      <button class="filter-btn" onclick="setWFilter('予約完了',this)">予約完了</button>
+      <button class="filter-btn" onclick="setWFilter('受け取り済',this)">受け取り済</button>
+      <button class="filter-btn" onclick="setWFilter('いつか買う',this)">いつか買う</button>
+    </div>
+    <div id="wishList" class="items-list"></div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div id="sub-cal" style="display:none">
+    <div class="cal-nav-row">
+      <button class="cal-btn" onclick="changeMonth(-1)">◀</button>
+      <div class="cal-label" id="calLabel"></div>
+      <button class="cal-btn" onclick="changeMonth(1)">▶</button>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-head">
+        <div class="cal-head-day">日</div><div class="cal-head-day">月</div>
+        <div class="cal-head-day">火</div><div class="cal-head-day">水</div>
+        <div class="cal-head-day">木</div><div class="cal-head-day">金</div>
+        <div class="cal-head-day">土</div>
+      </div>
+      <div id="calDays" class="cal-days"></div>
+      <div id="calLegend" class="cal-legend"></div>
+    </div>
+    <div id="calMonthList" class="cal-month-list"></div>
+  </div>
+
+  <!-- TOTALS -->
+  <div id="sub-totals" style="display:none">
+    <div id="totalsContent"></div>
+  </div>
+
+</div>
+
+<!-- ===== 気になる VIEW ===== -->
+<div id="view-kininar" class="view">
+  <div id="kininarList" class="items-list"></div>
+</div>
+
+<!-- ===== WISH MODAL ===== -->
+<div class="overlay" id="wishOverlay" onclick="bgClose('wishOverlay',event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="wishModalTitle">ほしいものを追加</div>
+
+    <div class="fsec">
+      <span class="fsec-label">基本情報</span>
+      <div class="fg"><label class="fl">名前</label><input class="fi" id="wf-name"></div>
+      <div class="frow">
+        <div class="fg"><label class="fl">ステータス</label>
+          <select class="fsel" id="wf-status">
+            <option>検討中</option><option>未予約</option><option>予約中</option>
+            <option>予約完了</option><option>受け取り済</option><option>いつか買う</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">カテゴリ</label>
+          <select class="fsel" id="wf-cat">
+            <option>グッズ</option><option>日用品</option><option>ファッション</option>
+            <option>コスメ</option><option>食品</option><option>本・映像</option><option>その他</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="kento-toggle" id="kentoToggle" onclick="toggleKento()">
+          <div class="toggle-box">✓</div>
+          <div><div class="toggle-label">💭 購入を検討中</div><div class="toggle-sub">チェックで総額タブに集計されます</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fsec">
+      <span class="fsec-label">予約・購入期間</span>
+      <div class="frow">
+        <div class="fg"><label class="fl">開始日</label><input class="fi" id="wf-start" type="date"></div>
+        <div class="fg"><label class="fl">終了日</label><input class="fi" id="wf-end" type="date"></div>
+      </div>
+    </div>
+
+    <div class="fsec">
+      <span class="fsec-label">金額</span>
+      <div class="frow">
+        <div class="fg"><label class="fl">値段</label><input class="fi" id="wf-price" type="number" oninput="updatePreview()"></div>
+        <div class="fg"><label class="fl">個数</label><input class="fi" id="wf-qty" type="number" min="1" oninput="updatePreview()"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="fl">送料</label><input class="fi" id="wf-ship" type="number" oninput="updatePreview()"></div>
+        <div class="fg"><label class="fl">手数料</label><input class="fi" id="wf-fee" type="number" oninput="updatePreview()"></div>
+      </div>
+      <div class="price-preview">
+        <div class="price-preview-label">合計金額</div>
+        <div class="price-preview-val" id="pricePreview">¥ —</div>
+      </div>
+    </div>
+
+    <div class="fsec">
+      <span class="fsec-label">その他</span>
+      <div class="fg"><label class="fl">ショップ名</label><input class="fi" id="wf-shop"></div>
+      <div class="fg"><label class="fl">支払い方法</label>
+        <select class="fsel" id="wf-pay">
+          <option value="">未定</option>
+          <option>クレジットカード</option><option>コンビニ払い</option>
+          <option>後払い</option><option>銀行振込</option><option>その他</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">商品URL</label><input class="fi" id="wf-url" type="url" placeholder="https://..."></div>
+      <div class="fg"><label class="fl">メモ</label><textarea class="fta" id="wf-memo" placeholder="サイズ・色・備考など..."></textarea></div>
+    </div>
+
+    <button class="btn-save" onclick="saveWish()">保存する 🍑</button>
+    <button class="btn-del" id="wBtnDel" style="display:none" onclick="deleteWish()">削除する</button>
+    <button class="btn-cancel" onclick="closeModal('wishOverlay')">キャンセル</button>
+  </div>
+</div>
+
+<!-- ===== 気になる MODAL ===== -->
+<div class="overlay" id="kininarOverlay" onclick="bgClose('kininarOverlay',event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="kininarModalTitle">気になるものを追加</div>
+    <div class="fsec">
+      <div class="fg"><label class="fl">名前</label><input class="fi" id="kf-name"></div>
+      <div class="fg"><label class="fl">URL（任意）</label><input class="fi" id="kf-url" type="url" placeholder="https://..."></div>
+      <div class="fg"><label class="fl">メモ（任意）</label><textarea class="fta" id="kf-memo" placeholder="色・サイズ・どこで見たかなど..."></textarea></div>
+    </div>
+    <button class="btn-save" onclick="saveKininar()">保存する 👀</button>
+    <button class="btn-del" id="kBtnDel" style="display:none" onclick="deleteKininar()">削除する</button>
+    <button class="btn-cancel" onclick="closeModal('kininarOverlay')">キャンセル</button>
+  </div>
+</div>
+
+<!-- CALENDAR POPUP -->
+<div class="cal-popup" id="calPopup" onclick="if(event.target===this)closeCalPopup()">
+  <div class="cal-popup-box">
+    <div class="cal-popup-title" id="calPopupTitle"></div>
+    <div id="calPopupItems"></div>
+    <button class="cal-popup-close" onclick="closeCalPopup()">閉じる</button>
+  </div>
+</div>
+
+<button class="fab" id="fab" onclick="fabClick()">＋</button>
+
+<script>
+// ── COLORS ──
+const STATUS_COLOR = {
+  '検討中':'#C9A84C','未予約':'#BBBBBB','予約中':'#F2856A',
+  '予約完了':'#7BAF8B','受け取り済':'#8BAFC9','いつか買う':'#C0B0A8'
+};
+const CAT_EMOJI = {'グッズ':'🧸','日用品':'🏠','ファッション':'👗','コスメ':'💄','食品':'🍜','本・映像':'📚','その他':'✨'};
+
+// ── DATA ──
+let wishes = [], kininar = [];
+try { wishes  = JSON.parse(localStorage.getItem('mp-wishes')||'[]'); } catch(e){}
+try { kininar = JSON.parse(localStorage.getItem('mp-kininar')||'[]'); } catch(e){}
+
+let editWishId=null, editKininarId=null;
+let wFilter='all', mainTab='wish', subTab='list';
+const today=new Date(); today.setHours(0,0,0,0);
+let calY=today.getFullYear(), calM=today.getMonth();
+
+const saveW = ()=>localStorage.setItem('mp-wishes', JSON.stringify(wishes));
+const saveK = ()=>localStorage.setItem('mp-kininar', JSON.stringify(kininar));
+const escH  = s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fmtFull = d=>{ if(!d)return''; const dt=new Date(d); return `${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日`; };
+const fmtShort= d=>{ if(!d)return''; const dt=new Date(d); return `${dt.getMonth()+1}/${dt.getDate()}`; };
+const dLeft   = d=>{ if(!d)return null; return Math.ceil((new Date(d)-today)/86400000); };
+const calcTotal=w=>{ const p=(parseInt(w.price)||0)*(parseInt(w.qty)||1); return p+(parseInt(w.ship)||0)+(parseInt(w.fee)||0); };
+
+// ── HEADER ──
+function renderHeader(){
+  const urgent = wishes.filter(w=>{ const d=dLeft(w.end); return d!==null&&d<=3&&d>=0; });
+  const kento  = wishes.filter(w=>w.kento);
+  const kSum   = kento.reduce((a,w)=>a+calcTotal(w),0);
+  document.getElementById('headerStats').innerHTML=`
+    <div class="stat-pill">ほしいもの <span>${wishes.length}件</span></div>
+    <div class="stat-pill">気になる <span>${kininar.length}件</span></div>
+    ${kento.length?`<div class="stat-pill">検討中 <span>¥${kSum.toLocaleString()}</span></div>`:''}
+  `;
+  const ub = document.getElementById('urgentBanner');
+  if(urgent.length){
+    ub.textContent = `⚡ 予約締切が近い！ ${urgent.map(w=>`「${w.name}」あと${dLeft(w.end)}日`).join(' / ')}`;
+    ub.classList.add('show');
+  } else {
+    ub.classList.remove('show');
+  }
+}
+
+// ── WISH LIST ──
+function renderWishList(){
+  const el=document.getElementById('wishList');
+  const list = wFilter==='all' ? wishes : wishes.filter(w=>w.status===wFilter);
+  if(!list.length){ el.innerHTML=`<div class="empty"><div class="empty-emoji">🍑</div><p>まだないよ！<br>右下の ＋ で追加しよう</p></div>`; return; }
+  el.innerHTML=list.map(w=>{
+    const total=calcTotal(w), dl=dLeft(w.end), urgent=dl!==null&&dl<=3&&dl>=0;
+    const col=STATUS_COLOR[w.status]||'#CCC';
+    const cat=CAT_EMOJI[w.cat]||'✨';
+    const dateStr=w.start&&w.end?`${fmtShort(w.start)} → ${fmtShort(w.end)}`:w.end?`〜${fmtShort(w.end)}`:'';
+    return `<div class="wish-card" onclick="openWishModal('${w.id}')">
+      <div class="wish-card-stripe" style="background:${col}"></div>
+      <div class="wish-inner">
+        <div class="wish-top">
+          <div class="wish-name">${escH(w.name)}</div>
+          <span class="status-badge sb-${w.status}">${w.status}</span>
+        </div>
+        <div class="wish-mid">
+          <div class="wish-price">${total>0?`¥${total.toLocaleString()}<span class="wish-price-sub">(本体¥${(parseInt(w.price)||0).toLocaleString()}${(parseInt(w.qty)||1)>1?'×'+w.qty:''})</span>`:'金額未入力'}</div>
+          <div class="wish-shop">${w.shop?escH(w.shop):''}</div>
+        </div>
+        <div class="wish-tags">
+          ${w.cat?`<span class="wish-tag">${cat} ${w.cat}</span>`:''}
+          ${w.pay?`<span class="wish-tag">💳 ${w.pay}</span>`:''}
+          ${w.kento?`<span class="wish-tag" style="background:#FFF5F0;color:var(--peach2)">💭 検討中</span>`:''}
+        </div>
+        ${dateStr?`<div class="wish-date ${urgent?'urgent':''}">📅 ${dateStr}${urgent?` ⚡ あと${dl}日！`:''}</div>`:''}
+        ${w.memo?`<div class="wish-memo">📝 ${escH(w.memo)}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── CALENDAR ──
+function renderCalendar(){
+  document.getElementById('calLabel').textContent=`${calY}年${calM+1}月`;
+  const first=new Date(calY,calM,1), last=new Date(calY,calM+1,0);
+  const pad=first.getDay(), total=Math.ceil((pad+last.getDate())/7)*7;
+  const ms=new Date(calY,calM,1), me=new Date(calY,calM+1,0);
+
+  // build dayMap: key -> [{col, pos, wishId}]
+  const dayMap={};
+  wishes.forEach(w=>{
+    if(!w.start&&!w.end)return;
+    const rs=w.start?new Date(w.start):null, re=w.end?new Date(w.end):null;
+    const rangeS=rs||re, rangeE=re||rs;
+    const col=STATUS_COLOR[w.status]||'#CCC';
+    let cur=new Date(Math.max(rangeS,ms));
+    const lim=new Date(Math.min(rangeE,me));
+    while(cur<=lim){
+      const key=cur.toISOString().slice(0,10);
+      if(!dayMap[key])dayMap[key]=[];
+      const atS=cur.getTime()===rangeS.getTime()||cur.getTime()===ms.getTime();
+      const atE=cur.getTime()===rangeE.getTime()||cur.getTime()===me.getTime();
+      let pos='m'; if(atS&&atE)pos='o'; else if(atS)pos='s'; else if(atE)pos='e';
+      dayMap[key].push({col,pos,id:w.id});
+      cur=new Date(cur.getTime()+86400000);
+    }
+  });
+
+  let html='';
+  for(let i=0;i<total;i++){
+    const dn=i-pad+1, inM=dn>=1&&dn<=last.getDate();
+    const dt=new Date(calY,calM,dn), key=dt.toISOString().slice(0,10);
+    const isToday=inM&&dt.getTime()===today.getTime(), dow=dt.getDay();
+    const sunC=dow===0?'sun':dow===6?'sat':'';
+    const hasItems=inM&&dayMap[key]&&dayMap[key].length>0;
+    const bars=hasItems?dayMap[key].map(({col,pos})=>`<div class="cal-bar ${pos}" style="background:${col}"></div>`).join(''):'';
+    const clickHandler=hasItems?`onclick="showCalPopup('${key}',${dn})"`:'' ;
+    html+=`<div class="cal-cell ${!inM?'other':''}" ${clickHandler} style="${hasItems?'cursor:pointer':''}">
+      <div class="cal-num ${isToday?'today':''} ${inM?sunC:''}">${inM?dn:''}</div>
+      <div class="cal-bars">${bars}</div>
+    </div>`;
+  }
+  document.getElementById('calDays').innerHTML=html;
+
+  // legend
+  const shown=new Map();
+  wishes.forEach(w=>{ if((w.start||w.end)&&!shown.has(w.status))shown.set(w.status,STATUS_COLOR[w.status]||'#CCC'); });
+  document.getElementById('calLegend').innerHTML=[...shown.entries()].map(([s,c])=>
+    `<div class="cal-legend-row"><div class="cal-legend-dot" style="background:${c}"></div>${s}</div>`
+  ).join('');
+
+  // month list below calendar
+  const monthWishes = wishes.filter(w=>{
+    if(!w.start&&!w.end)return false;
+    const rs=w.start?new Date(w.start):null, re=w.end?new Date(w.end):null;
+    const rangeS=rs||re, rangeE=re||rs;
+    return rangeS<=me && rangeE>=ms;
+  });
+  const mlEl=document.getElementById('calMonthList');
+  if(monthWishes.length){
+    mlEl.innerHTML=`<div class="cal-month-list-title">この月の予約・購入期間</div>`+
+      monthWishes.map(w=>`<div class="cal-month-item" onclick="openWishModal('${w.id}')">
+        <div class="cal-month-item-dot" style="background:${STATUS_COLOR[w.status]||'#CCC'}"></div>
+        <div class="cal-month-item-body">
+          <div class="cal-month-item-name">${escH(w.name)}</div>
+          <div class="cal-month-item-date">${fmtFull(w.start||'')} 〜 ${fmtFull(w.end||'')}</div>
+        </div>
+        <div class="cal-month-item-badge"><span class="status-badge sb-${w.status}">${w.status}</span></div>
+      </div>`).join('');
+  } else {
+    mlEl.innerHTML='';
+  }
+}
+
+function showCalPopup(dateKey, dayNum){
+  const items=[];
+  wishes.forEach(w=>{
+    if(!w.start&&!w.end)return;
+    const rs=w.start?new Date(w.start):null, re=w.end?new Date(w.end):null;
+    const rangeS=rs||re, rangeE=re||rs;
+    const dt=new Date(dateKey);
+    if(dt>=rangeS&&dt<=rangeE)items.push(w);
+  });
+  if(!items.length)return;
+  document.getElementById('calPopupTitle').textContent=`${calM+1}月${dayNum}日の予約`;
+  document.getElementById('calPopupItems').innerHTML=items.map(w=>`
+    <div class="cal-popup-item" onclick="closeCalPopup();openWishModal('${w.id}')">
+      <div class="cal-popup-dot" style="background:${STATUS_COLOR[w.status]||'#CCC'}"></div>
+      <div class="cal-popup-name">${escH(w.name)}</div>
+      <div class="cal-popup-date">${w.end?`〜${fmtShort(w.end)}`:''}</div>
+    </div>`).join('');
+  document.getElementById('calPopup').classList.add('open');
+}
+function closeCalPopup(){ document.getElementById('calPopup').classList.remove('open'); }
+
+function changeMonth(d){ calM+=d; if(calM>11){calM=0;calY++;}if(calM<0){calM=11;calY--;} renderCalendar(); }
+
+// ── TOTALS ──
+function renderTotals(){
+  const el=document.getElementById('totalsContent');
+  const kg=wishes.filter(w=>w.kento);
+  if(!kg.length){
+    el.innerHTML=`<div class="empty"><div class="empty-emoji">💭</div><p>検討中のアイテムがないよ！<br>追加するときに「購入を検討中」を<br>チェックしてみてね🍑</p></div>`;
+    return;
+  }
+  const grand=kg.reduce((a,w)=>a+calcTotal(w),0);
+  const pSum=kg.reduce((a,w)=>a+(parseInt(w.price)||0)*(parseInt(w.qty)||1),0);
+  const sSum=kg.reduce((a,w)=>a+(parseInt(w.ship)||0),0);
+  const fSum=kg.reduce((a,w)=>a+(parseInt(w.fee)||0),0);
+  const bySt={};
+  kg.forEach(w=>{ if(!bySt[w.status])bySt[w.status]={c:0,t:0}; bySt[w.status].c++;bySt[w.status].t+=calcTotal(w); });
+
+  el.innerHTML=`
+    <div class="totals-hero">
+      <div class="totals-hero-label">検討中 ${kg.length}件の合計</div>
+      <div class="totals-hero-val">¥${grand.toLocaleString()}</div>
+      <div class="totals-grid">
+        <div class="totals-mini"><div class="totals-mini-label">本体代</div><div class="totals-mini-val">¥${pSum.toLocaleString()}</div></div>
+        <div class="totals-mini"><div class="totals-mini-label">送料</div><div class="totals-mini-val">¥${sSum.toLocaleString()}</div></div>
+        ${fSum>0?`<div class="totals-mini"><div class="totals-mini-label">手数料</div><div class="totals-mini-val">¥${fSum.toLocaleString()}</div></div>`:''}
+      </div>
+    </div>
+    <div class="totals-section">
+      <div class="totals-section-title">ステータス別</div>
+      ${Object.entries(bySt).map(([s,v])=>`<div class="totals-row">
+        <div class="totals-row-l"><div class="totals-row-dot" style="background:${STATUS_COLOR[s]||'#CCC'}"></div>${s}（${v.c}件）</div>
+        <div class="totals-row-val">¥${v.t.toLocaleString()}</div>
+      </div>`).join('')}
+    </div>
+    <div class="totals-section-title" style="margin-bottom:10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;">検討中リスト</div>
+    <div class="kento-cards">
+      ${kg.map(w=>`<div class="kento-card" onclick="openWishModal('${w.id}')">
+        <div class="kento-stripe"></div>
+        <div class="kento-name">${escH(w.name)}</div>
+        <div class="kento-prices">
+          <span>本体 ¥${(parseInt(w.price)||0).toLocaleString()}${(parseInt(w.qty)||1)>1?'×'+w.qty:''}</span>
+          ${w.ship?`<span>送料 ¥${(parseInt(w.ship)||0).toLocaleString()}</span>`:''}
+          ${w.fee?`<span>手数料 ¥${(parseInt(w.fee)||0).toLocaleString()}</span>`:''}
+          <span class="kento-total">合計 ¥${calcTotal(w).toLocaleString()}</span>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+
+// ── 気になる ──
+function renderKininar(){
+  const el=document.getElementById('kininarList');
+  if(!kininar.length){ el.innerHTML=`<div class="empty"><div class="empty-emoji">👀</div><p>気になるものがないよ！<br>右下の ＋ でぽいぽい追加してね</p></div>`; return; }
+  el.innerHTML=kininar.map(k=>`<div class="kininar-card" onclick="openKininarModal('${k.id}')">
+    <div class="kininar-top">
+      <div class="kininar-name">${escH(k.name)}</div>
+    </div>
+    ${k.url?`<a class="kininar-url" href="${escH(k.url)}" target="_blank" onclick="event.stopPropagation()">🔗 ${escH(k.url.replace(/^https?:\/\//,'').slice(0,40))}${k.url.length>40?'...':''}</a>`:''}
+    ${k.memo?`<div class="kininar-memo">📝 ${escH(k.memo)}</div>`:''}
+    <button class="kininar-promote" onclick="event.stopPropagation();promoteToWish('${k.id}')">🍑 ほしいものに追加</button>
+  </div>`).join('');
+}
+
+function promoteToWish(id){
+  const k=kininar.find(x=>x.id===id);
+  if(!k)return;
+  // open wish modal pre-filled
+  openWishModal(null);
+  document.getElementById('wf-name').value=k.name;
+  document.getElementById('wf-url').value=k.url||'';
+  document.getElementById('wf-memo').value=k.memo||'';
+  // store id to delete after save
+  window._promoteFrom=id;
+}
+
+// ── TABS ──
+function switchMain(tab){
+  mainTab=tab;
+  document.querySelectorAll('.main-tab').forEach((t,i)=>t.classList.toggle('active',['wish','kininar'][i]===tab));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  document.getElementById('fab').style.display='flex';
+}
+
+function switchSub(sub,btn){
+  subTab=sub;
+  document.querySelectorAll('.sub-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sub-list').style.display  = sub==='list'?'block':'none';
+  document.getElementById('sub-cal').style.display   = sub==='cal'?'block':'none';
+  document.getElementById('sub-totals').style.display= sub==='totals'?'block':'none';
+  if(sub==='cal')renderCalendar();
+  if(sub==='totals')renderTotals();
+}
+
+function setWFilter(f,btn){
+  wFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderWishList();
+}
+
+// ── FAB ──
+function fabClick(){
+  if(mainTab==='wish') openWishModal(null);
+  else openKininarModal(null);
+}
+
+// ── WISH MODAL ──
+function openWishModal(id){
+  editWishId=id||null;
+  window._promoteFrom=null;
+  const w=id?wishes.find(x=>x.id===id):null;
+  document.getElementById('wishModalTitle').textContent=w?'ほしいものを編集':'ほしいものを追加';
+  document.getElementById('wf-name').value=w?w.name:'';
+  document.getElementById('wf-status').value=w?w.status:'未予約';
+  document.getElementById('wf-cat').value=w?w.cat:'グッズ';
+  document.getElementById('wf-start').value=w?(w.start||''):'';
+  document.getElementById('wf-end').value=w?(w.end||''):'';
+  document.getElementById('wf-price').value=w?(w.price||''):'';
+  document.getElementById('wf-qty').value=w?(w.qty||''):'';
+  document.getElementById('wf-ship').value=w?(w.ship||''):'';
+  document.getElementById('wf-fee').value=w?(w.fee||''):'';
+  document.getElementById('wf-shop').value=w?(w.shop||''):'';
+  document.getElementById('wf-pay').value=w?(w.pay||''):'';
+  document.getElementById('wf-url').value=w?(w.url||''):'';
+  document.getElementById('wf-memo').value=w?(w.memo||''):'';
+  const kt=document.getElementById('kentoToggle');
+  w&&w.kento?kt.classList.add('on'):kt.classList.remove('on');
+  document.getElementById('wBtnDel').style.display=w?'block':'none';
+  updatePreview();
+  document.getElementById('wishOverlay').classList.add('open');
+}
+
+function saveWish(){
+  const name=document.getElementById('wf-name').value.trim();
+  if(!name){alert('名前を入力してね！');return;}
+  const data={
+    id:editWishId||Date.now().toString(), name,
+    status:document.getElementById('wf-status').value,
+    cat:document.getElementById('wf-cat').value,
+    kento:document.getElementById('kentoToggle').classList.contains('on'),
+    start:document.getElementById('wf-start').value,
+    end:document.getElementById('wf-end').value,
+    price:document.getElementById('wf-price').value,
+    qty:document.getElementById('wf-qty').value,
+    ship:document.getElementById('wf-ship').value,
+    fee:document.getElementById('wf-fee').value,
+    shop:document.getElementById('wf-shop').value,
+    pay:document.getElementById('wf-pay').value,
+    url:document.getElementById('wf-url').value,
+    memo:document.getElementById('wf-memo').value,
+  };
+  if(editWishId) wishes=wishes.map(w=>w.id===editWishId?data:w);
+  else wishes.push(data);
+  if(window._promoteFrom){
+    kininar=kininar.filter(k=>k.id!==window._promoteFrom);
+    saveK(); renderKininar();
+  }
+  saveW(); closeModal('wishOverlay'); renderAll();
+}
+
+function deleteWish(){
+  if(!confirm('削除してもいい？'))return;
+  wishes=wishes.filter(w=>w.id!==editWishId);
+  saveW(); closeModal('wishOverlay'); renderAll();
+}
+
+function toggleKento(){ document.getElementById('kentoToggle').classList.toggle('on'); }
+function updatePreview(){
+  const p=(parseInt(document.getElementById('wf-price').value)||0)*(parseInt(document.getElementById('wf-qty').value)||1);
+  const t=p+(parseInt(document.getElementById('wf-ship').value)||0)+(parseInt(document.getElementById('wf-fee').value)||0);
+  document.getElementById('pricePreview').textContent=t>0?`¥ ${t.toLocaleString()}`:'¥ —';
+}
+
+// ── KININAR MODAL ──
+function openKininarModal(id){
+  editKininarId=id||null;
+  const k=id?kininar.find(x=>x.id===id):null;
+  document.getElementById('kininarModalTitle').textContent=k?'気になるものを編集':'気になるものを追加';
+  document.getElementById('kf-name').value=k?k.name:'';
+  document.getElementById('kf-url').value=k?(k.url||''):'';
+  document.getElementById('kf-memo').value=k?(k.memo||''):'';
+  document.getElementById('kBtnDel').style.display=k?'block':'none';
+  document.getElementById('kininarOverlay').classList.add('open');
+}
+
+function saveKininar(){
+  const name=document.getElementById('kf-name').value.trim();
+  if(!name){alert('名前を入力してね！');return;}
+  const data={id:editKininarId||Date.now().toString(),name,url:document.getElementById('kf-url').value,memo:document.getElementById('kf-memo').value};
+  if(editKininarId)kininar=kininar.map(k=>k.id===editKininarId?data:k);
+  else kininar.push(data);
+  saveK(); closeModal('kininarOverlay'); renderKininar(); renderHeader();
+}
+
+function deleteKininar(){
+  if(!confirm('削除してもいい？'))return;
+  kininar=kininar.filter(k=>k.id!==editKininarId);
+  saveK(); closeModal('kininarOverlay'); renderKininar(); renderHeader();
+}
+
+// ── UTIL ──
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function bgClose(id,e){ if(e.target===document.getElementById(id))closeModal(id); }
+function renderAll(){ renderHeader(); renderWishList(); if(subTab==='cal')renderCalendar(); if(subTab==='totals')renderTotals(); }
+
+renderAll();
+renderKininar();
+</script>
+</body>
+</html>
