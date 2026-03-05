@@ -189,6 +189,8 @@ body {
 .wish-price-sub { font-size:10px; color:var(--muted); font-weight:400; margin-left:2px; }
 .wish-shop { font-size:11px; color:var(--muted); }
 
+.wish-url { display:block; font-size:11px; color:var(--peach2); margin-top:5px; text-decoration:none; word-break:break-all; }
+.wish-url:active { opacity:0.7; }
 .wish-date { font-size:10px; color:var(--muted); margin-top:3px; line-height:1.6; }
 .wish-date.urgent { color:var(--peach2); font-weight:700; }
 
@@ -576,7 +578,7 @@ body {
         <select class="fsel" id="wf-pay">
           <option value="">未定</option>
           <option>クレジットカード</option><option>コンビニ払い</option>
-          <option>後払い</option><option>銀行振込</option><option>その他</option>
+          <option>後払い</option><option>銀行振込</option><option>代引き</option><option>現金</option><option>その他</option>
         </select>
       </div>
       <div class="fg"><label class="fl">商品URL</label><input class="fi" id="wf-url" type="url" placeholder="https://..."></div>
@@ -688,6 +690,7 @@ function renderWishList(){
           ${w.kento?`<span class="wish-tag" style="background:#FFF5F0;color:var(--peach2)">💭 検討中</span>`:''}
         </div>
         ${dateStr?`<div class="wish-date ${urgent?'urgent':''}">📅 ${dateStr}${urgent?` ⚡ あと${dl}日！`:''}</div>`:''}
+        ${w.url?`<a class="wish-url" href="${escH(w.url)}" target="_blank" onclick="event.stopPropagation()">🔗 ${escH(w.url.replace(/^https?:\/\//,'').slice(0,35))}${w.url.length>35?'...':''}</a>`:''}
         ${w.memo?`<div class="wish-memo">📝 ${escH(w.memo)}</div>`:''}
       </div>
     </div>`;
@@ -998,7 +1001,7 @@ function renderAll(){ renderHeader(); renderWishList(); if(subTab==='cal')render
 renderAll();
 renderKininar();
 
-const APP_VER='1.0.2';
+const APP_VER='1.0.3';
 document.getElementById('verBadge').textContent='v'+APP_VER;
 const _ptr=document.createElement('div');_ptr.id='ptr-wrap';_ptr.textContent='↓ 引っ張って更新';document.body.appendChild(_ptr);
 let _ps=0,_pd=0,_pa=false;const _PT=70;
